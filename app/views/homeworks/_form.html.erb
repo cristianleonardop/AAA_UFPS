@@ -1,0 +1,37 @@
+<%= form_with(model: homework, local: true) do |form| %>
+  <% if homework.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(homework.errors.count, "error") %> prohibited this homework from being saved:</h2>
+
+      <ul>
+        <% homework.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_area :description %>
+  </div>
+
+   <div class="field">
+    <%= form.label :precio %>
+    <%= form.number_field :price %>
+  </div>
+
+   <div class="field">
+    <%= form.label :fecha_de_entrega %>
+    <%= form.date_field :due_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
