@@ -1,35 +1,67 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Homeworks</h1>
+<!-- Page title & actions -->
+<div class="border-b border-gray-200 px-4 py-4 flex items-center sm:justify-between sm:px-6 lg:px-8">
+  <div class="flex min-w-0 w-1/2">
+    <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
+      Mis Tareas
+    </h1>
+  </div>
+  <div class="flex sm:mt-0 sm:ml-4 w-1/2 justify-end">
+    <%= link_to 'Crear una tarea', new_homework_path, class: "order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3" %>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th width='3%'></th>
-      <th width='3%'></th>
-      <th width='25%'>Nombre</th>
-      <th width='25%'>Descripcion</th>
-      <th width='20%'>Precio</th>
-      <th width='20%'>Fecha de entrega</th>
-    </tr>
-  </thead>
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="flex flex-col mt-4">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Nombre
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Descripcion
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Precio
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Fecha de entrega
+            </th>
+            <th scope="col" class="relative px-6 py-3">
+              <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <% @homeworks.each do |homework| %>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <%= homework.name %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= homework.description %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= homework.price %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= homework.due_date != nil ? homework.due_date.strftime("%Y/%m/%d") : '' %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <%= link_to 'Edit', edit_homework_path(homework), class: "text-indigo-600 hover:text-indigo-900" %>
+                </td>
+              </tr>
+            <% end %>
+          <!-- More rows... -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <tbody>
-    <% @homeworks.each do |homework| %>
-      <tr>
-        <td><%= homework.name %></td>
-        <td><%= homework.description %></td>
-        <td><%= homework.price %></td>
-        <td><%= homework.due_date != nil ? homework.due_date.strftime("%Y/%m/%d") : '' %></td>
-
-        <td><%= link_to 'Show', homework %></td>
-        <td><%= link_to 'Edit', edit_homework_path(homework) %></td>
-        <td><%= link_to 'Destroy', homework, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Homework', new_homework_path %>

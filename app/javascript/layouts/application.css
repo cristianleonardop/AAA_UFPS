@@ -12,3 +12,16 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/regular';
 @import '@fortawesome/fontawesome-free/scss/brands';
 @import '@fortawesome/fontawesome-free/scss/v4-shims';
+
+
+.nav-item{
+    @apply text-gray-600;
+}
+
+.nav-item:hover{
+    @apply text-gray-800 bg-gray-50;
+}
+
+.nav-item.active{
+    @apply bg-gray-200 text-gray-800;
+}

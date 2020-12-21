@@ -1,11 +1,24 @@
 module ApplicationHelper
   def icon_alert
-    {"alert" => "exclamation-triangle", "warning" => "exclamation-triangle", "notice" => "check-circle", "info" => "info-circle", "danger" => "", "success" => "check-circle", "danger" => "exclamation-circle"}
+    {"alert" => "exclamation-triangle",
+     "warning" => "exclamation-triangle",
+     "notice" => "check-circle",
+     "info" => "info-circle",
+     "danger" => "",
+     "success" => "check-circle",
+     "danger" => "exclamation-circle"}
+  end
+
+  def alert_class
+    {"alert" => "yellow",
+     "warning" => "red",
+     "notice" => "green",
+     "info" => "blue"}
   end
 
   def is_homeworks_path
   	case request.params[:controller]
-		when 'homeworks' then 'active' 
+		when 'homeworks' then 'active'
     end
   end
 
@@ -20,5 +33,4 @@ module ApplicationHelper
 		when 'users' then 'active' 
     end
   end
-
 end

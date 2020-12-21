@@ -6,7 +6,7 @@ class TutoringsController < ApplicationController
   # GET /tutorings
   # GET /tutorings.json
   def index
-    @tutorings = @homework.tutorings.all
+    @tutorings = []
   end
 
   # GET /tutorings/1
