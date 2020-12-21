@@ -9,6 +9,10 @@ class HomeworksController < ApplicationController
     @homeworks = @user.homeworks.all
   end
 
+  def all_homeworks
+    @homeworks = Homework.where('due_date >= ?', DateTime.now)
+  end
+
   # GET /homeworks/1
   # GET /homeworks/1.json
   def show
@@ -75,6 +79,6 @@ class HomeworksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def homework_params
-      params.fetch(:homework, {})
+      params.require(:homework).permit(:name, :description, :price, :due_date, :subject_id)
     end
 end

@@ -1,0 +1,20 @@
+<div class="container mx-auto mt-4">
+<% flash.each do |key, value| %>
+  <div id="flash">
+    <% unless key.to_s == 'timedout'%>
+      <div id="flash2" v-if="close" :class="animatedFlash" class="alert alert-<%= key %>" role="alert" v-cloak>
+        <div class="flex">
+          <i class="fas fa-<%= icon_alert[key] %>"></i>
+          <div class="text-teal-darkest w-full">
+            <p class="font-bold">Atención.</p>
+            <p class="text-sm"><%= value %></p>
+          </div>
+          <div class="w-full flex justify-end items-center">
+            <i class="fas fa-times"></i>
+          </div>
+        </div>
+      </div>
+  </div>
+    <% end %>
+  <% end %>
+</div>
