@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_19_000956) do
+ActiveRecord::Schema.define(version: 2020_12_20_232144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,19 @@ ActiveRecord::Schema.define(version: 2020_12_19_000956) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "tutorings", force: :cascade do |t|
+    t.string "file", default: "", null: false
+    t.date "due_date", null: false
+    t.integer "state", default: 0, null: false
+    t.integer "duration", default: 0, null: false
+    t.bigint "subject_id", null: false
+    t.bigint "homework_id", null: false
+    t.bigint "teacher_id", null: false
+    t.index ["homework_id"], name: "index_tutorings_on_homework_id"
+    t.index ["subject_id"], name: "index_tutorings_on_subject_id"
+    t.index ["teacher_id"], name: "index_tutorings_on_teacher_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -65,4 +78,6 @@ ActiveRecord::Schema.define(version: 2020_12_19_000956) do
 
   add_foreign_key "homeworks", "subjects"
   add_foreign_key "knowledges", "subjects"
+  add_foreign_key "tutorings", "homeworks"
+  add_foreign_key "tutorings", "subjects"
 end

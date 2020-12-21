@@ -9,10 +9,8 @@
     <%=  stylesheet_pack_tag  'application',  media: 'all',  'data-turbolinks-track': 'reload'  %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body class="h-screen flex overflow-hidden bg-white">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <body class="container mx-auto">
+<%= render partial: 'shared/flash' %>
 
     <%= render SlideOverNavigationComponent.new %>
     <%= render "shared/side_navigation" %>

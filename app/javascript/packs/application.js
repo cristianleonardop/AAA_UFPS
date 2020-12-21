@@ -18,3 +18,4 @@ require("channels")
 
 import "controllers"
 import  "../layouts/application.css";
+import "@fortawesome/fontawesome-free/js/all";

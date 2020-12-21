@@ -1,10 +1,12 @@
 class HomeworksController < ApplicationController
   before_action :set_homework, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /homeworks
   # GET /homeworks.json
   def index
-    @homeworks = Homework.all
+    @homeworks = @user.homeworks.all
   end
 
   # GET /homeworks/1
@@ -14,7 +16,7 @@ class HomeworksController < ApplicationController
 
   # GET /homeworks/new
   def new
-    @homework = Homework.new
+    @homework = @user.homework.new
   end
 
   # GET /homeworks/1/edit
@@ -24,7 +26,7 @@ class HomeworksController < ApplicationController
   # POST /homeworks
   # POST /homeworks.json
   def create
-    @homework = Homework.new(homework_params)
+    @homework = @user.homework.new(homework_params)
 
     respond_to do |format|
       if @homework.save
@@ -63,8 +65,12 @@ class HomeworksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:student_id])
+    end
+
     def set_homework
-      @homework = Homework.find(params[:id])
+      @homework = @user.homeworks.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

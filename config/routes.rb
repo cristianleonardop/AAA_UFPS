@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tutorings
   resources :knowledges
   resources :subjects
   resources :homeworks
