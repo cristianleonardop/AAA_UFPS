@@ -10,10 +10,19 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="container mx-auto">
+  <body class="h-screen flex overflow-hidden bg-white">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <%= yield %>
+    <%= render SlideOverNavigationComponent.new %>
+    <%= render "shared/side_navigation" %>
+
+    <div class="flex flex-col w-0 flex-1 overflow-hidden">
+      <%= render "shared/main_navbar" %>
+
+      <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
