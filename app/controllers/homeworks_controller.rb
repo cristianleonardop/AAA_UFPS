@@ -1,5 +1,5 @@
 class HomeworksController < ApplicationController
-  before_action :set_user
+  before_action :set_user, except: [:all_homeworks]
   before_action :set_homework, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
@@ -7,10 +7,12 @@ class HomeworksController < ApplicationController
   # GET /homeworks.json
   def index
     @homeworks = @user.homeworks
+
     authorize @homeworks
   end
 
   def all_homeworks
+
     @homeworks = Homework.all
     # @homeworks = Homework.where('due_date >= ?', DateTime.now)
   end
@@ -53,7 +55,7 @@ class HomeworksController < ApplicationController
   # PATCH/PUT /homeworks/1.json
   def update
     authorize @homework
-    
+
     respond_to do |format|
       if @homework.update(homework_params)
         format.html { redirect_to @homework, notice: 'Homework was successfully updated.' }

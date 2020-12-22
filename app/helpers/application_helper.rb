@@ -17,10 +17,18 @@ module ApplicationHelper
   end
 
   def is_homeworks_path
-  	case request.params[:controller]
-		when 'homeworks' then 'active'
+  	case request.path
+		when '/homeworks' then 'active'
     end
   end
+
+  def is_all_homeworks_path
+    case request.path
+    when '/mercado_de_tareas' then 'active'
+    when '/' then 'active'
+    end
+  end
+
 
   def is_users_path
     case request.params[:controller]
