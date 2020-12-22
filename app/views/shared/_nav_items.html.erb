@@ -30,8 +30,7 @@
 
 <% end %>
 
-
-<% if current_user.student? || current_user.teacher? %>
+<% if current_user.student? %>
 
 <a href="<%= homeworks_path %>" class="nav-item <%= is_homeworks_path %> group flex items-center px-2 py-2 text-sm font-medium rounded-md">
   <!-- Heroicon name: view-list -->
@@ -40,6 +39,9 @@
   </svg>
   Mis tareas
 </a>
+
+<% end %>
+<% if current_user.student? || current_user.teacher? %>
 
 <a href="<%= tutorings_path %>" class="nav-item <%= is_tutorings_path %> group flex items-center px-2 py-2 text-sm font-medium rounded-md">
   <!-- Heroicon name: clock -->
