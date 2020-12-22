@@ -1,0 +1,110 @@
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div id="slide-over-component">
+  <div id="slide-over-content" class="fixed inset-0 overflow-hidden <%= 'hidden' unless @active %>">
+    <div class="absolute inset-0 overflow-hidden">
+      <section class="absolute inset-y-0 right-0 pl-10 max-w-full flex sm:pl-16 transform transition ease-in-out duration-500 sm:duration-700 <%= set_transition_translate_class %>" aria-labelledby="slide-over-heading">
+        <!--
+          Slide-over panel, show/hide based on slide-over state.
+
+          Entering: "transform transition ease-in-out duration-500 sm:duration-700"
+            From: "translate-x-full"
+            To: "translate-x-0"
+          Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
+            From: "translate-x-0"
+            To: "translate-x-full"
+        -->
+        <div class="w-screen max-w-md">
+          <div class="h-full flex flex-col bg-white shadow-xl">
+            <div class="px-4 py-6 sm:px-6">
+              <div class="flex items-start justify-between">
+                <h2 id="slide-over-heading" class="text-lg font-medium text-gray-900">
+                  <%= @homework&.name %>
+                </h2>
+                <div class="ml-3 h-7 flex items-center">
+                  <button class="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500" data-reflex="click->Components::SlideOverReflex#close_slide_over">
+                    <span class="sr-only">Close panel</span>
+                    <!-- Heroicon name: x -->
+
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Main -->
+            <div>
+              <div class="pb-1 sm:pb-6">
+                <div>
+                  <div class="relative h-40 sm:h-56">
+                    <div class="flex justify-center h-full w-full object-cover bg-red-500 text-white items-center font-semibold text-2xl capitalize">
+                      <%= @homework&.subject&.name %>
+                    </div>
+<!--                    <img class="absolute h-full w-full object-cover" src="https://images.unsplash.com/photo-1501031170107-cfd33f0cbdcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&h=600&q=80" alt="">-->
+                  </div>
+                  <div class="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
+                    <div class="sm:flex-1">
+                      <div>
+                        <div class="flex items-center">
+                          <h3 class="font-bold text-xl text-gray-900 sm:text-2xl"><%= @homework&.student&.name %></h3>
+                          <span class="ml-2.5 bg-green-400 flex-shrink-0 inline-block h-2 w-2 rounded-full">
+                          <span class="sr-only">Online</span>
+                        </span>
+                        </div>
+                        <p class="text-sm text-gray-500"><%= @homework&.student&.email %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="px-4 pt-5 pb-5 sm:px-0 sm:pt-0">
+                <dl class="space-y-8 px-4 sm:px-6 sm:space-y-6">
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
+                      Descripción
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
+                      <p>
+                        <%= @homework&.description %>
+                      </p>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
+                      Precio
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
+                      <%= number_to_currency(@homework&.price) %>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
+                      Fecha de entrega
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
+                      <%= @homework&.due_date %>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+
+            <div class="h-full"></div>
+
+            <!-- Action buttons -->
+            <div class="flex-shrink-0 px-4 border-t border-gray-200 py-5 sm:px-6">
+              <div class="space-x-3 flex justify-end">
+                <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" data-reflex="click->Components::SlideOverReflex#close_slide_over">
+                  Cancelar
+                </button>
+                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  Aceptar servicio
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

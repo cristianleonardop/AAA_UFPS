@@ -10,7 +10,8 @@ class HomeworksController < ApplicationController
   end
 
   def all_homeworks
-    @homeworks = Homework.where('due_date >= ?', DateTime.now)
+    @homeworks = Homework.all
+    # @homeworks = Homework.where('due_date >= ?', DateTime.now)
   end
 
   # GET /homeworks/1
