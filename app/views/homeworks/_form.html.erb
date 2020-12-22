@@ -1,84 +1,70 @@
-<div class="flex w-full px-4 py-5 bg-white sm:p-6">
-  <%= form_with(model: homework, local: true, class: "grid grid-cols-6 gap-6 w-full") do |form| %>
-    <% if homework.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(homework.errors.count, "error") %> prohibited this homework from being saved:</h2>
+<div class="flex-1 flex flex-col py-3 px-2 sm:px-1 lg:flex-none lg:px-10 xl:px-12 ">
+  <div class="w-full max-w-sm lg:w-96">
+    <div class="flex w-full ">
+     
+    </div>
+    <div class="mt-8">
+      <div class="mt-6">
 
-        <ul>
-          <% homework.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+        <%= form_with(model: homework, local: true) do |form| %>
+          <% if homework.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(homework.errors.count, "error") %> prohibited this homework from being saved:</h2>
+
+              <ul>
+                <% homework.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
           <% end %>
-        </ul>
-      </div>
-    <% end %>
 
-    <div class="col-span-6 sm:col-span-3">
-      <%= form.label :nombre, class: "block text-sm font-medium text-gray-700" %>
-      <%= form.text_field :name, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-    </div>
-
-    <div class="col-span-6 sm:col-span-3">
-      <%= form.label :precio, class: "block text-sm font-medium text-gray-700" %>
-      <%= form.number_field :price, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-    </div>
-
-    <div class="col-span-6 sm:col-span-3">
-      <%= form.label :materia, class: "block text-sm font-medium text-gray-700" %>
-      <%=
-        form.collection_select(
-          :loan_id,
-          Subject.all,
-          :id,
-          :name,
-          {include_blank: true},
-          {
-            class: 'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-          }
-        )
-      %>
-    </div>
-
-    <div class="col-span-6 sm:col-span-3">
-      <%= form.label :fecha_de_entrega, class: "block text-sm font-medium text-gray-700" %>
-      <%= form.date_field :due_date, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-    </div>
-
-    <div class="col-span-6 sm:col-span-6">
-      <%= form.label :anexos, class: "block text-sm font-medium text-gray-700"  %>
-      <div class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-        <div class="space-y-1 text-center">
-          <svg class="mx-auto h-8 w-8 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-          <div class="flex text-sm text-gray-600">
-            <label for="homework_file_link" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-              <span>Cargar documento</span>
-              <%= form.file_field :file_link, class: "sr-only" %>
-            </label>
+         <div class="field">
+            <%= form.label :nombre, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.text_field :name, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
           </div>
-          <p class="text-xs text-gray-500">
-            PNG, JPG, GIF
-          </p>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-span-6 sm:col-span-6">
-      <%= form.label :descripcion, class: "block text-sm font-medium text-gray-700" %>
-      <%= form.text_area :description, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-    </div>
+          <div class="field">
+            <%= form.label :descripcion, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.text_area :description, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+          </div>
 
-    <% if @homework.file_link && !@homework.new_record? %>
-      <a href="<%= @homework.file_link.url %>" target="_blank" >Descargar</a>
-    <% end %>
+           <div class="field">
+            <%= form.label :precio, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.number_field :price, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+          </div>
 
-    <div class="col-span-6 sm:col-span-6">
-      <div class="flex justify-end">
-        <%= link_to 'Cancelar', homeworks_path, class: "text-gray-600 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"%>
-        <%= form.submit "Crear tarea", class: "ml-2 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-      </div>
-    </div>
-  <% end %>
-</div>
+           <div class="field">
+            <%= form.label :fecha_de_entrega, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.date_field :due_date, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+          </div>
+
+          <div class="field">
+            <%= form.label :subject_id, class: "block text-sm font-medium text-gray-700" %>
+            <%=
+              form.collection_select(
+                :subject_id,
+                Subject.all,
+                :id,
+                :name,
+                {include_blank: true},
+                {
+                  class: 'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                }
+              )
+            %>
+          </div>         
+          <% if @homework.file_link %>
+            <a href="<%= @homework.file_link.url %>" target="_blank" >Descargar</a>                        
+          <% end %>
+          <div class="field">
+            <%= form.label :file_link, class: "block text-sm font-medium text-gray-700"  %>
+            <%= form.file_field :file_link %>
+          </div>
 
 
+          
+          <div class="actions mt-3">
+            <%= form.submit "Crear tarea", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+          </div>
+        <% end %>
