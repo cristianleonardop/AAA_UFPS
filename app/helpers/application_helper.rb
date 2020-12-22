@@ -4,7 +4,6 @@ module ApplicationHelper
      "warning" => "exclamation-triangle",
      "notice" => "check-circle",
      "info" => "info-circle",
-     "danger" => "",
      "success" => "check-circle",
      "danger" => "exclamation-circle"}
   end

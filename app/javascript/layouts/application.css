@@ -29,3 +29,7 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 a:visited{
     color: inherit;
 }
+
+a:hover{
+    background: inherit;
+}

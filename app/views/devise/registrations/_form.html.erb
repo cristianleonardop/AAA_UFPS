@@ -75,6 +75,14 @@
           </div>
         <% end %>
       </div>
+      <div class="text-sm text-indigo-600 w-full text-center mt-3">
+        <span class="text-gray-600 font-medium mr-1">
+          Ya tienes cuenta?
+        </span>
+        <%- if devise_mapping.registerable? && controller_name != 'sessions' %>
+          <%= link_to "Inicia sesión!", new_session_path(resource_name), class: "font-medium text-indigo-600 hover:text-indigo-500" %><br />
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
