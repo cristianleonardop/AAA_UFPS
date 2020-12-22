@@ -16,7 +16,6 @@ class TutoringsController < ApplicationController
         @tutorings = []
        end 
     end
-    
   end
 
   # GET /tutorings/1

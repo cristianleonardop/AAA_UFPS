@@ -62,4 +62,5 @@ export default class extends ApplicationController {
   //   console.error('danceError', error);
   //   element.innerText = "Couldn't dance!"
   // }
+
 }
