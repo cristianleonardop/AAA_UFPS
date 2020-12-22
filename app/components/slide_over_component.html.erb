@@ -97,9 +97,15 @@
                 <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" data-reflex="click->Components::SlideOverReflex#close_slide_over">
                   Cancelar
                 </button>
-                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                  Aceptar servicio
-                </button>
+                <%= form_tag(tutorings_path(homework_id: @homework&.id), method: "post") do %>                  
+                    <%= hidden_field_tag :due_date, @homework&.due_date %>
+                    <%= hidden_field_tag :teacher_id, @active_user.id %>
+                    <%= hidden_field_tag :price, @homework&.price %>
+                    <%= hidden_field_tag :subject_id, @homework&.subject&.id %>
+                    <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                      Aceptar servicio
+                    </button>
+                <% end %>
               </div>
             </div>
           </div>

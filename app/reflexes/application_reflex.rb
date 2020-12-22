@@ -4,6 +4,7 @@ class ApplicationReflex < StimulusReflex::Reflex
   include CableReady::Broadcaster
 
   delegate :render, to: ApplicationController
+  delegate :current_user, to: :connection
 
   # Put application wide Reflex behavior in this file.
   #
