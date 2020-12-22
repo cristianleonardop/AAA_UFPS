@@ -14,7 +14,11 @@ ROLES = {
  student: "Estudiante",
  teacher:  "Tutor",
  admin:  "Administrador"
+}
 
+ROLES_2 = {
+ student: "Estudiante",
+ teacher:  "Tutor",
 }
   
 PROCEDURE_KINDS = {
