@@ -10,8 +10,8 @@ class TutoringsController < ApplicationController
     if current_user.teacher?
       @tutorings = current_user.tutorings
     else
-       if current_user.homeworks.any?
-        @tutorings = current_user.homeworks.first.tutorings
+       if current_user.homeworks.any?        
+        @tutorings = Tutoring.where(homework_id: current_user.homeworks.pluck(id))
        else
         @tutorings = []
        end 
