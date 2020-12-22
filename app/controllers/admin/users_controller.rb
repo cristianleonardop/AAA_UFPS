@@ -3,11 +3,13 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:edit, :update, :destroy, :enable, :disable, :invite]
   def index
+
     # if params[:query] &&  params[:query] != ""
       # @users = User.where.not(id: current_user.id).search_by_personal_information(params[:query]).order(:last_name)
     # else
       @users = User.where.not(id: current_user.id).order(:last_name)
     # end
+    authorize @users
     
     #@users = User.where("id NOT IN (?)", current_user.id)
     # authorize @users
@@ -16,13 +18,15 @@ class Admin::UsersController < ApplicationController
   end
 
   def new
+
     @user = User.new
-    # authorize @user
+    authorize @user
   end
 
   def create
+
     @user = User.new(user_params)
-    # authorize @user
+    authorize @user
     # @user.skip_confirmation!
     path = admin_users_path
     if @user.save(context: :admin)
@@ -38,7 +42,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    # authorize @user
+    authorize @users
+    
     if @user.update(user_params)
       redirect_to admin_users_path, notice: 'El usuario fue actualizado exitosamente.'
     else

@@ -7,6 +7,7 @@ class HomeworksController < ApplicationController
   # GET /homeworks.json
   def index
     @homeworks = @user.homeworks
+    authorize @homeworks
   end
 
   def all_homeworks
@@ -22,18 +23,21 @@ class HomeworksController < ApplicationController
   # GET /homeworks/new
   def new
     @homework = @user.homeworks.new
+    authorize @homework
+    
   end
 
   # GET /homeworks/1/edit
   def edit
+    authorize @homework
+
   end
 
   # POST /homeworks
   # POST /homeworks.json
   def create
     @homework = @user.homeworks.new(homework_params)
-    @homework.subject_id = Subject.first.id
-
+    authorize @homework
     respond_to do |format|
       if @homework.save
         format.html { redirect_to @homework, notice: 'Homework was successfully created.' }
@@ -48,6 +52,8 @@ class HomeworksController < ApplicationController
   # PATCH/PUT /homeworks/1
   # PATCH/PUT /homeworks/1.json
   def update
+    authorize @homework
+    
     respond_to do |format|
       if @homework.update(homework_params)
         format.html { redirect_to @homework, notice: 'Homework was successfully updated.' }
