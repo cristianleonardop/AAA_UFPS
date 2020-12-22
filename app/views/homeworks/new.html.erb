@@ -1,6 +1,9 @@
-<h2 class="mt-6 text-2xl font-extrabold text-gray-700">
-        Crear tarea
-      </h2>
-<%= link_to 'Back', admin_users_path, class: "order-0 inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3"%>
-<%= render 'form', homework: @homework %>
+<div class="border-b border-gray-200 px-4 py-4 flex items-center sm:justify-between sm:px-6 lg:px-8">
+  <div class="flex min-w-0 w-1/2">
+    <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
+      Crear Tarea
+    </h1>
+  </div>
+</div>
 
+<%= render 'form', homework: @homework %>

@@ -1,6 +1,6 @@
 <!-- Current: "bg-gray-200 text-gray-900", Default: "text-gray-700 hover:text-gray-900 hover:bg-gray-50" -->
 
-<% if current_user.teacher? %>
+<% if active_user.teacher? %>
   <a href="<%= all_homeworks_path %>" class="nav-item <%= is_homeworks_path %> group flex items-center px-2 py-2 text-sm font-medium rounded-md">
   <!-- Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" -->
   <!-- Heroicon name: home -->
@@ -11,7 +11,7 @@
 </a>
 <% end %>
 
-<% if current_user.admin? %>
+<% if active_user.admin? %>
   <a href="<%= admin_users_path %>" class="nav-item <%= is_users_path %> group flex items-center px-2 py-2 text-sm font-medium rounded-md">
     <!-- Heroicon name: view-list -->
     <svg class="mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -30,7 +30,7 @@
 
 <% end %>
 
-<% if current_user.student? %>
+<% if active_user.student? %>
 
 <a href="<%= homeworks_path %>" class="nav-item <%= is_homeworks_path %> group flex items-center px-2 py-2 text-sm font-medium rounded-md">
   <!-- Heroicon name: view-list -->
@@ -41,7 +41,7 @@
 </a>
 
 <% end %>
-<% if current_user.student? || current_user.teacher? %>
+<% if active_user.student? || active_user.teacher? %>
 
 <a href="<%= tutorings_path %>" class="nav-item <%= is_tutorings_path %> group flex items-center px-2 py-2 text-sm font-medium rounded-md">
   <!-- Heroicon name: clock -->

@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class SlideOverNavigationComponent < ViewComponent::Base
-  def initialize(active: false)
+  def initialize(active: false, active_user: nil)
     @active = active
+    @active_user = active_user
     @state = @active ? :open : :close
   end
 

@@ -25,3 +25,7 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 .nav-item.active{
     @apply bg-gray-200 text-gray-800;
 }
+
+a:visited{
+    color: inherit;
+}
