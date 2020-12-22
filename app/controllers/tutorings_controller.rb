@@ -11,7 +11,7 @@ class TutoringsController < ApplicationController
       @tutorings = current_user.tutorings
     else
        if current_user.homeworks.any?        
-        @tutorings = Tutoring.where(homework_id: current_user.homeworks.pluck(id))
+        @tutorings = Tutoring.where(homework_id: current_user.homeworks.pluck(:id))
        else
         @tutorings = []
        end 
