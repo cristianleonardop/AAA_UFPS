@@ -1,6 +1,7 @@
-<h1>Editing Subject</h1>
+ <h2 class="mt-6 text-2xl font-extrabold text-gray-700">
+        Editar materia
+      </h2>
+<%= link_to 'Back', subjects_path, class: "order-0 inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3" %>
+
 
 <%= render 'form', subject: @subject %>
-
-<%= link_to 'Show', @subject %> |
-<%= link_to 'Back', subjects_path %>

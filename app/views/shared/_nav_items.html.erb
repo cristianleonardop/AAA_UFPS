@@ -1,5 +1,7 @@
 <!-- Current: "bg-gray-200 text-gray-900", Default: "text-gray-700 hover:text-gray-900 hover:bg-gray-50" -->
-<a href="<%= all_homeworks_path %>" class="nav-item <%= is_homeworks_path %> group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+
+<% if current_user.teacher? %>
+  <a href="<%= all_homeworks_path %>" class="nav-item <%= is_homeworks_path %> group flex items-center px-2 py-2 text-sm font-medium rounded-md">
   <!-- Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" -->
   <!-- Heroicon name: home -->
   <svg class="mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -7,6 +9,29 @@
   </svg>
   Mercado de tareas
 </a>
+<% end %>
+
+<% if current_user.admin? %>
+  <a href="<%= admin_users_path %>" class="nav-item <%= is_users_path %> group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+    <!-- Heroicon name: view-list -->
+    <svg class="mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+    </svg>
+    Usuarios
+  </a>
+
+  <a href="<%= subjects_path %>" class="nav-item <%= is_subjects_path %> group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+    <!-- Heroicon name: view-list -->
+    <svg class="mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+    </svg>
+    Materias
+  </a>
+
+<% end %>
+
+
+<% if current_user.student? || current_user.teacher? %>
 
 <a href="<%= homeworks_path %>" class="nav-item <%= is_homeworks_path %> group flex items-center px-2 py-2 text-sm font-medium rounded-md">
   <!-- Heroicon name: view-list -->
@@ -23,3 +48,5 @@
   </svg>
   Tareas en servicio
 </a>
+
+<% end %>

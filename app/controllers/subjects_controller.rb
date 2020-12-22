@@ -1,5 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /subjects
   # GET /subjects.json
@@ -28,7 +29,7 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       if @subject.save
-        format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
+        format.html { redirect_to subjects_path, notice: 'La tarea se creo correctamente.' }
         format.json { render :show, status: :created, location: @subject }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class SubjectsController < ApplicationController
   def update
     respond_to do |format|
       if @subject.update(subject_params)
-        format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
+        format.html { redirect_to subjects_path, notice: 'La tarea se edito correctamente.' }
         format.json { render :show, status: :ok, location: @subject }
       else
         format.html { render :edit }

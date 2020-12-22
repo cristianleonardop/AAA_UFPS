@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_20_232144) do
+ActiveRecord::Schema.define(version: 2020_12_22_034529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_12_20_232144) do
   create_table "homeworks", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.text "description", default: "", null: false
-    t.string "file", default: "", null: false
+    t.string "file_link", default: "", null: false
     t.integer "price", null: false
     t.date "due_date", null: false
     t.bigint "student_id", null: false
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2020_12_20_232144) do
     t.integer "role"
     t.date "birthday"
     t.integer "score"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

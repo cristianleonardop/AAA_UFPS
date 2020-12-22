@@ -11,14 +11,27 @@
   <meta name="viewport" content="width=device-width, user-scalable=no">
 </head>
 
-<body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+<% unless current_user  %>  
+  <body class="">
+<% else %>
+  <body class="h-screen flex overflow-hidden bg-white">
+<% end %>
+<body class="h-screen flex overflow-hidden bg-white">
+  <% unless current_user  %>  
+    <div class="min-h-screen bg-white flex">
+      <div class="hidden lg:block relative w-0 flex-1">
+        <img class="absolute inset-0 h-full w-full object-cover" src="https://i2.wp.com/www.additudemag.com/wp-content/uploads/2016/11/School.Homework.ADHD_at_school_remembering_to_turn_in_assignments.Article.5951A.chalkboard_homework.ts_467588985-3.jpg?w=1024&quality=1#038;ssl=1" alt="">
+      </div>
+      <% else %>
+    <%= render SlideOverNavigationComponent.new %>
+    <%= render "shared/side_navigation" %>
 
-  <div class="min-h-screen bg-white flex">
-    <div class="hidden lg:block relative w-0 flex-1">
-      <img class="absolute inset-0 h-full w-full object-cover" src="https://i2.wp.com/www.additudemag.com/wp-content/uploads/2016/11/School.Homework.ADHD_at_school_remembering_to_turn_in_assignments.Article.5951A.chalkboard_homework.ts_467588985-3.jpg?w=1024&quality=1#038;ssl=1" alt="">
-    </div>
+    <div class="flex flex-col w-0 flex-1 overflow-hidden">
+      <%= render "shared/main_navbar" %>
+      <%= render "shared/flash" %>
+      <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
+  <% end %>
+
     <%= yield %>
   </div>
 </body>

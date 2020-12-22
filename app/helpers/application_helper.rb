@@ -22,6 +22,19 @@ module ApplicationHelper
     end
   end
 
+  def is_users_path
+    case request.params[:controller]
+    when 'admin/users' then 'active'
+    end
+  end
+
+  def is_subjects_path
+    case request.params[:controller]
+    when 'subjects' then 'active'
+    end
+  end
+
+
   def is_tutorings_path
   	case request.params[:controller]
 		when 'tutorings' then 'active' 

@@ -1,37 +1,70 @@
-<%= form_with(model: homework, local: true) do |form| %>
-  <% if homework.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(homework.errors.count, "error") %> prohibited this homework from being saved:</h2>
-
-      <ul>
-        <% homework.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div class="flex-1 flex flex-col py-3 px-2 sm:px-1 lg:flex-none lg:px-10 xl:px-12 ">
+  <div class="w-full max-w-sm lg:w-96">
+    <div class="flex w-full ">
+     
     </div>
-  <% end %>
+    <div class="mt-8">
+      <div class="mt-6">
 
- <div class="field">
-    <%= form.label :nombre %>
-    <%= form.text_field :name %>
-  </div>
+        <%= form_with(model: homework, local: true) do |form| %>
+          <% if homework.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(homework.errors.count, "error") %> prohibited this homework from being saved:</h2>
 
-  <div class="field">
-    <%= form.label :descripcion %>
-    <%= form.text_area :description %>
-  </div>
+              <ul>
+                <% homework.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
 
-   <div class="field">
-    <%= form.label :precio %>
-    <%= form.number_field :price %>
-  </div>
+         <div class="field">
+            <%= form.label :nombre, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.text_field :name, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+          </div>
 
-   <div class="field">
-    <%= form.label :fecha_de_entrega %>
-    <%= form.date_field :due_date %>
-  </div>
+          <div class="field">
+            <%= form.label :descripcion, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.text_area :description, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+          </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+           <div class="field">
+            <%= form.label :precio, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.number_field :price, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+          </div>
+
+           <div class="field">
+            <%= form.label :fecha_de_entrega, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.date_field :due_date, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+          </div>
+
+          <div class="field">
+            <%= form.label :subject_id, class: "block text-sm font-medium text-gray-700" %>
+            <%=
+              form.collection_select(
+                :loan_id,
+                Subject.all,
+                :id,
+                :name,
+                {include_blank: true},
+                {
+                  class: 'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                }
+              )
+            %>
+          </div>         
+          <% if @homework.file_link %>
+            <a href="<%= @homework.file_link.url %>" target="_blank" >Descargar</a>                        
+          <% end %>
+          <div class="field">
+            <%= form.label :file_link, class: "block text-sm font-medium text-gray-700"  %>
+            <%= form.file_field :file_link %>
+          </div>
+
+
+          
+          <div class="actions mt-3">
+            <%= form.submit "Crear tarea", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+          </div>
+        <% end %>

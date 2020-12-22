@@ -3,11 +3,11 @@
 <div class="border-b border-gray-200 px-4 py-4 flex items-center sm:justify-between sm:px-6 lg:px-8">
   <div class="flex min-w-0 w-1/2">
     <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
-      Materias
+      Usuarios
     </h1>
   </div>
   <div class="flex sm:mt-0 sm:ml-4 w-1/2 justify-end">
-    <%= link_to 'Crear una materia', new_subject_path, class: "order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3" %>
+    <%= link_to 'Crear un usuario', new_admin_user_path, class: "order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3" %>
   </div>
 </div>
 
@@ -23,7 +23,13 @@
               Nombre
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Descripcion
+              Apellido
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Email
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Role
             </th>
             <th scope="col" class="relative px-6 py-3">
               <span class="sr-only">Edit</span>
@@ -31,16 +37,22 @@
           </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <% @subjects.each do |subject| %>
+            <% @users.each do |user| %>
               <tr>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  <%= subject.name %>
+                  <%= user.name %>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <%= subject.description %>
+                  <%= user.last_name %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= user.email %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= user.role  %>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <%= link_to 'Edit', edit_subject_path(subject), class: "text-indigo-600 hover:text-indigo-900" %>
+                  <%= link_to 'Edit', edit_admin_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
                 </td>
               </tr>
             <% end %>
